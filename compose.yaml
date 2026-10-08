@@ -1,0 +1,9 @@
+services:
+  web:
+    image: nginx:stable
+    container_name: web
+    ports:
+      - "80:80"
+    volumes:
+      - ./site:/usr/share/nginx/html:ro
+    restart: unless-stopped
