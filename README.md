@@ -1,42 +1,39 @@
-# Projetinho Cloud
+# AWS DevOps Lab
 
-Site estático servido por Nginx em container Docker, rodando numa instância EC2 da AWS e descrito como código com Docker Compose.
+Laboratório de infraestrutura na AWS com práticas de DevOps, construído passo a passo e documentado.
 
 ## Arquitetura
 
-Navegador -> Internet -> Security Group (porta 80) -> EC2 (Ubuntu 24.04) -> Docker -> Nginx -> `site/`
+~~
+Navegador ──HTTP/HTTPS──▶ EC2 (Ubuntu) ──▶ Docker Compose ──▶ Nginx
+Admin ──Tailscale (rede privada)──▶ EC2 (acesso remoto por SSH)
+~~
 
 ## Stack
 
-- AWS EC2 (Ubuntu Server 24.04 LTS)
-- Docker Engine e Docker Compose v2 (repositório oficial da Docker)
-- Nginx (`nginx:stable`)
-- Git
+- AWS EC2 (Ubuntu Server LTS), região São Paulo
+- Docker e Docker Compose
+- Nginx servindo um site estático
+- Tailscale para acesso remoto privado
+- Git e GitHub
 
-## Como rodar
+## Segurança
 
-    git clone <url-do-repositorio>
-    cd projetinho-cloud
-    docker compose up -d
+- SSH apenas por chave, sem senha e sem login de root
+- Firewall (ufw) ativo e security group da AWS restringindo portas
+- Acesso administrativo pela rede privada do Tailscale
 
-Depois, acesse `http://<ip-do-servidor>`.
+## Como subir
 
-## Estrutura
+~~bash
+docker compose up -d
+~~
 
-- `compose.yaml`: define o serviço web (porta 80, bind mount somente leitura, restart policy)
-- `site/index.html`: página servida pelo Nginx
+## Roadmap
 
-## O que foi feito
-
-- Servidor EC2 com acesso apenas por chave SSH e usuário próprio, sem usar o usuário padrão
-- Security Group: SSH restrito ao meu IP, HTTP e HTTPS abertos
-- Docker instalado pelo repositório oficial
-- Container com `restart: unless-stopped`, validado com reboot do servidor
-- Volume EBS ampliado de 8 para 20 GiB e sistema de arquivos expandido online (`growpart` + `resize2fs`), sem downtime
-
-## Próximos passos
-
-- Publicar no GitHub e criar pipeline com GitHub Actions
-- HTTPS com certificado
-- Provisionar a infraestrutura com Terraform
-- Monitoramento e logs
+- [x] Servidor, Docker e primeiro serviço no ar
+- [x] Acesso remoto privado com Tailscale
+- [ ] CI/CD com GitHub Actions
+- [ ] HTTPS com domínio próprio
+- [ ] Observabilidade (CloudWatch)
+- [ ] Infraestrutura como código (Terraform)
