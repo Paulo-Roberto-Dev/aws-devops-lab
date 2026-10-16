@@ -1,0 +1,19 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o código
+        uses: actions/checkout@v4
+
+      - name: Validar o Docker Compose
+        run: docker compose -f app/compose.yaml config -q
+
+      - name: Lint dos arquivos YAML
+        run: pipx run yamllint -d relaxed app/compose.yaml .github/workflows/ci.yml
