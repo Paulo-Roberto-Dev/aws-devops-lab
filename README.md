@@ -26,7 +26,7 @@ Admin ──Tailscale (rede privada)──▶ EC2 (acesso remoto por SSH)
 ## Como subir
 
 ```bash
-docker compose up -d
+cd app && docker compose up -d
 ```
 
 ## Roadmap
