@@ -1,4 +1,5 @@
 # AWS DevOps Lab
+![CI](https://github.com/Paulo-Roberto-Dev/aws-devops-lab/actions/workflows/ci.yml/badge.svg)
 
 Laboratório de infraestrutura na AWS com práticas de DevOps, construído passo a passo e documentado.
 
@@ -33,7 +34,8 @@ cd app && docker compose up -d
 
 - [x] Servidor, Docker e primeiro serviço no ar
 - [x] Acesso remoto privado com Tailscale
-- [ ] CI/CD com GitHub Actions
+- [x] CI: validação do Compose a cada push
+- [ ] CD: deploy automatizado pelo GitHub Actions
 - [ ] HTTPS com domínio próprio
 - [ ] Observabilidade (CloudWatch)
 - [ ] Infraestrutura como código (Terraform)
