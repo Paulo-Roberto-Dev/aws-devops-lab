@@ -4,10 +4,10 @@ Laboratório de infraestrutura na AWS com práticas de DevOps, construído passo
 
 ## Arquitetura
 
-~~
+```text
 Navegador ──HTTP/HTTPS──▶ EC2 (Ubuntu) ──▶ Docker Compose ──▶ Nginx
 Admin ──Tailscale (rede privada)──▶ EC2 (acesso remoto por SSH)
-~~
+```
 
 ## Stack
 
@@ -25,9 +25,9 @@ Admin ──Tailscale (rede privada)──▶ EC2 (acesso remoto por SSH)
 
 ## Como subir
 
-~~bash
+```bash
 docker compose up -d
-~~
+```
 
 ## Roadmap
 
