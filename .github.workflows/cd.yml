@@ -25,12 +25,16 @@ jobs:
           oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
           tags: tag:ci
 
+     
       - name: Deploy no servidor
         run: |
           ssh -o StrictHostKeyChecking=accept-new hidokai@100.80.240.46 '
             set -e
+            hostname
             cd ~/aws-devops-lab
+            echo "antes: $(git rev-parse --short HEAD)"
             git pull --ff-only
+            echo "depois: $(git rev-parse --short HEAD)"
             docker compose -f app/compose.yaml up -d
             docker compose -f app/compose.yaml ps
           '
